@@ -10,5 +10,4 @@ import Foundation
 
 enum Constants {
     static let url = "http://api.openweathermap.org/"
-    static let APIKey = "9fdb3ef0cca5b3b8afe78aff22fd7eef"
 }
