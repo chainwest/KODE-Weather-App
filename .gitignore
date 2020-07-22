@@ -1,2 +1,4 @@
-.DS_Store
+DS_Store
 .DS_Store?
+Pods/
+KODE Weather App/Values/ApiKey.swift

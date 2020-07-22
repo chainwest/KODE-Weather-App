@@ -9,5 +9,6 @@ target 'KODE Weather App' do
   pod 'Alamofire'
   pod 'Kingfisher'
   pod 'SwiftLint'
+  pod 'PromiseKit'
 
 end
