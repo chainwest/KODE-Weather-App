@@ -1,10 +1,5 @@
 //
 //  AppDelegate.swift
-//  KODE Weather App
-//
-//  Created by Evgeniy on 16.07.2020.
-//  Copyright © 2020 Evgeniy. All rights reserved.
-//
 
 import UIKit
 
