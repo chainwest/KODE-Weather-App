@@ -13,6 +13,8 @@
 		6CC0478524C846E6009DD99A /* MainBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC0478424C846E6009DD99A /* MainBlock.swift */; };
 		6CC0478724C846F1009DD99A /* WeatherBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC0478624C846F1009DD99A /* WeatherBlock.swift */; };
 		6CC0478924C846FC009DD99A /* WindBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC0478824C846FC009DD99A /* WindBlock.swift */; };
+		6CD67A9E24C8B51000E68825 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD67A9D24C8B51000E68825 /* MapViewModel.swift */; };
+		6CD67AA024C8B5D400E68825 /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD67A9F24C8B5D400E68825 /* AppDependency.swift */; };
 		94746F5C1FE6474673A051AE /* Pods_KODE_Weather_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 251F3BF0DF085B5AD1A8C7BF /* Pods_KODE_Weather_App.framework */; };
 		DAFD68BC24C0357F0040C8F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFD68BB24C0357F0040C8F2 /* AppDelegate.swift */; };
 		DAFD68C524C035870040C8F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAFD68C424C035870040C8F2 /* Assets.xcassets */; };
@@ -28,6 +30,8 @@
 		6CC0478424C846E6009DD99A /* MainBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBlock.swift; sourceTree = "<group>"; };
 		6CC0478624C846F1009DD99A /* WeatherBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherBlock.swift; sourceTree = "<group>"; };
 		6CC0478824C846FC009DD99A /* WindBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindBlock.swift; sourceTree = "<group>"; };
+		6CD67A9D24C8B51000E68825 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		6CD67A9F24C8B5D400E68825 /* AppDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
 		CF7663447938EDDB57E57153 /* Pods-KODE Weather App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KODE Weather App.debug.xcconfig"; path = "Target Support Files/Pods-KODE Weather App/Pods-KODE Weather App.debug.xcconfig"; sourceTree = "<group>"; };
 		DAFD68B824C0357F0040C8F2 /* KODE Weather App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KODE Weather App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAFD68BB24C0357F0040C8F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +55,7 @@
 		6C276DDF24C5874A0029E801 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				6CD67A9C24C8B4F200E68825 /* Map */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -90,6 +95,14 @@
 			path = Values;
 			sourceTree = "<group>";
 		};
+		6CD67A9C24C8B4F200E68825 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				6CD67A9D24C8B51000E68825 /* MapViewModel.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 		CF20154421FEA322E84D6207 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +138,7 @@
 				6CB931EC24C1878700137D27 /* Model */,
 				6C276DDF24C5874A0029E801 /* Modules */,
 				DAFD68BB24C0357F0040C8F2 /* AppDelegate.swift */,
+				6CD67A9F24C8B5D400E68825 /* AppDependency.swift */,
 				DAFD68C424C035870040C8F2 /* Assets.xcassets */,
 				DAFD68C624C035870040C8F2 /* LaunchScreen.storyboard */,
 				DAFD68C924C035870040C8F2 /* Info.plist */,
@@ -252,7 +266,9 @@
 				6CC0478524C846E6009DD99A /* MainBlock.swift in Sources */,
 				6C276DE224C587C30029E801 /* GeoCodingService.swift in Sources */,
 				6CB931EF24C1879E00137D27 /* Constants.swift in Sources */,
+				6CD67AA024C8B5D400E68825 /* AppDependency.swift in Sources */,
 				6CC0478924C846FC009DD99A /* WindBlock.swift in Sources */,
+				6CD67A9E24C8B51000E68825 /* MapViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
