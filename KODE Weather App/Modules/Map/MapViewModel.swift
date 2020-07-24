@@ -22,7 +22,7 @@ class MapViewModel {
         self.dependencies = dependencies
     }
     
-    func cityToCoordinates(city: String) {
+    func getCoordinates(for city: String) {
         firstly {
             dependencies.geoCodingService.cityToCoordinates(city: city)
         }.done { result in
@@ -33,7 +33,7 @@ class MapViewModel {
         }
     }
     
-    func coordinatesToCity(coordinates: CLLocationCoordinate2D) {
+    func getCity(for coordinates: CLLocationCoordinate2D) {
         firstly {
             dependencies.geoCodingService.coordinatesToCity(coordinate: coordinates)
         }.done { result in
@@ -44,7 +44,7 @@ class MapViewModel {
         }
     }
     
-    func goToWeatherScreen() {
+    func showWeatherScreen() {
         guard let city = selectedCity else { return }
         delegate?.mapViewModel(self, didRequestShowWeatherFor: city)
     }
