@@ -5,27 +5,37 @@
 import MapKit
 import PromiseKit
 
-class GeoCodingService {
+struct GeoCodingService {
+    private let geocoder = CLGeocoder()
+    
     func cityToCoordinates(city: String) -> Promise<CLPlacemark> {
         return Promise { seal in
-            CLGeocoder().geocodeAddressString(city) { placemark, error in
+            geocoder.geocodeAddressString(city) { placemark, error in
                 if let error = error {
                     seal.reject(error)
                     return
                 }
-                seal.fulfill((placemark?.first)!)
+                
+                if let firstPlacemark = placemark?.first {
+                    seal.fulfill(firstPlacemark)
+                }
             }
         }
     }
     
     func coordinatesToCity(coordinate: CLLocationCoordinate2D) -> Promise<CLPlacemark> {
         return Promise { seal in
-            CLGeocoder().reverseGeocodeLocation(CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)) { placemark, error in
+            let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+            
+            geocoder.reverseGeocodeLocation(location) { placemark, error in
                 if let error = error {
                     seal.reject(error)
                     return
                 }
-                seal.fulfill((placemark?.first)!)
+                
+                if let firstPlacemark = placemark?.first {
+                    seal.fulfill(firstPlacemark)
+                }
             }
         }
     }
