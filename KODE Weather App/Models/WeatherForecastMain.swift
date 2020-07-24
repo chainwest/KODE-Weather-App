@@ -1,14 +1,10 @@
 //
 //  MainBlock.swift
 //  KODE Weather App
-//
-//  Created by Евгений Урбановский on 21.07.2020.
-//  Copyright © 2020 Evgeniy. All rights reserved.
-//
 
 import Foundation
 
-struct MainBlock: Decodable {
+struct WeatherForecastMain: Decodable {
     var temp: Double
     var feels_like: Double
     var temp_min: Double

@@ -4,7 +4,7 @@
 import PromiseKit
 
 extension NetworkService: WeatherNetworkService {
-    func getWeather(city: String) -> Promise<Response> {
+    func getWeather(city: String) -> Promise<WeatherForecastResponse> {
         return Promise { seal in
             let params = [
                 "q": city,
@@ -12,7 +12,7 @@ extension NetworkService: WeatherNetworkService {
             ]
             
             firstly {
-                baseRequest(url: URLFactory.url, method: .get, params: params)
+                baseRequest(url: URLFactory.baseURL, method: .get, params: params)
             }.done { result in
                 seal.fulfill(result)
             }.catch { error in

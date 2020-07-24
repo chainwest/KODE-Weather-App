@@ -4,5 +4,5 @@
 import PromiseKit
 
 protocol WeatherNetworkService {
-    func getWeather(city: String) -> Promise<Response>
+    func getWeather(city: String) -> Promise<WeatherForecastResponse>
 }

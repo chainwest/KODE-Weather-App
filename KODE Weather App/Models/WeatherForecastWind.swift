@@ -3,7 +3,7 @@
 
 import Foundation
 
-struct WindBlock: Decodable {
+struct WeatherForecastWind: Decodable {
     var speed: Double
     var deg: Double
 }

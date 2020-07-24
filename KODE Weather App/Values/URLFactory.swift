@@ -4,5 +4,5 @@
 import Foundation
 
 struct URLFactory {
-    static let url = "http://api.openweathermap.org/"
+    static let baseURL = "http://api.openweathermap.org/"
 }

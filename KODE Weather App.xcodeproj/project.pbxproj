@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		6C74E05B24C1E4750073BD6F /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C74E05A24C1E4750073BD6F /* NetworkService.swift */; };
 		6CB931EF24C1879E00137D27 /* URLFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB931EE24C1879E00137D27 /* URLFactory.swift */; };
-		6CB931F124C187C100137D27 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB931F024C187C100137D27 /* Response.swift */; };
-		6CDA529324C6D8BD00480A77 /* WindBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDA529224C6D8BD00480A77 /* WindBlock.swift */; };
-		6CDA529524C6D8DF00480A77 /* WeatherBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDA529424C6D8DF00480A77 /* WeatherBlock.swift */; };
-		6CDA529724C6D90A00480A77 /* MainBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDA529624C6D90A00480A77 /* MainBlock.swift */; };
+		6CB931F124C187C100137D27 /* WeatherForecastResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB931F024C187C100137D27 /* WeatherForecastResponse.swift */; };
+		6CDA529324C6D8BD00480A77 /* WeatherForecastWind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDA529224C6D8BD00480A77 /* WeatherForecastWind.swift */; };
+		6CDA529524C6D8DF00480A77 /* WeatherForecastProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDA529424C6D8DF00480A77 /* WeatherForecastProperties.swift */; };
+		6CDA529724C6D90A00480A77 /* WeatherForecastMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDA529624C6D90A00480A77 /* WeatherForecastMain.swift */; };
 		6CDA529A24C6DAA400480A77 /* WeatherNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDA529924C6DAA400480A77 /* WeatherNetworkService.swift */; };
 		6CDA529E24C6DC6000480A77 /* getWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDA529D24C6DC6000480A77 /* getWeather.swift */; };
 		6CDA52A024C6DDCF00480A77 /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDA529F24C6DDCF00480A77 /* ApiKey.swift */; };
@@ -27,10 +27,10 @@
 		251F3BF0DF085B5AD1A8C7BF /* Pods_KODE_Weather_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KODE_Weather_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C74E05A24C1E4750073BD6F /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		6CB931EE24C1879E00137D27 /* URLFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLFactory.swift; sourceTree = "<group>"; };
-		6CB931F024C187C100137D27 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
-		6CDA529224C6D8BD00480A77 /* WindBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindBlock.swift; sourceTree = "<group>"; };
-		6CDA529424C6D8DF00480A77 /* WeatherBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherBlock.swift; sourceTree = "<group>"; };
-		6CDA529624C6D90A00480A77 /* MainBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBlock.swift; sourceTree = "<group>"; };
+		6CB931F024C187C100137D27 /* WeatherForecastResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecastResponse.swift; sourceTree = "<group>"; };
+		6CDA529224C6D8BD00480A77 /* WeatherForecastWind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecastWind.swift; sourceTree = "<group>"; };
+		6CDA529424C6D8DF00480A77 /* WeatherForecastProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecastProperties.swift; sourceTree = "<group>"; };
+		6CDA529624C6D90A00480A77 /* WeatherForecastMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecastMain.swift; sourceTree = "<group>"; };
 		6CDA529924C6DAA400480A77 /* WeatherNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNetworkService.swift; sourceTree = "<group>"; };
 		6CDA529D24C6DC6000480A77 /* getWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getWeather.swift; sourceTree = "<group>"; };
 		6CDA529F24C6DDCF00480A77 /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
@@ -73,10 +73,10 @@
 		6CB931EC24C1878700137D27 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				6CB931F024C187C100137D27 /* Response.swift */,
-				6CDA529224C6D8BD00480A77 /* WindBlock.swift */,
-				6CDA529424C6D8DF00480A77 /* WeatherBlock.swift */,
-				6CDA529624C6D90A00480A77 /* MainBlock.swift */,
+				6CB931F024C187C100137D27 /* WeatherForecastResponse.swift */,
+				6CDA529224C6D8BD00480A77 /* WeatherForecastWind.swift */,
+				6CDA529424C6D8DF00480A77 /* WeatherForecastProperties.swift */,
+				6CDA529624C6D90A00480A77 /* WeatherForecastMain.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -274,11 +274,11 @@
 				6CDA52A024C6DDCF00480A77 /* ApiKey.swift in Sources */,
 				DAFD68BC24C0357F0040C8F2 /* AppDelegate.swift in Sources */,
 				6CDA529A24C6DAA400480A77 /* WeatherNetworkService.swift in Sources */,
-				6CDA529324C6D8BD00480A77 /* WindBlock.swift in Sources */,
-				6CDA529524C6D8DF00480A77 /* WeatherBlock.swift in Sources */,
+				6CDA529324C6D8BD00480A77 /* WeatherForecastWind.swift in Sources */,
+				6CDA529524C6D8DF00480A77 /* WeatherForecastProperties.swift in Sources */,
 				6CDA529E24C6DC6000480A77 /* getWeather.swift in Sources */,
-				6CB931F124C187C100137D27 /* Response.swift in Sources */,
-				6CDA529724C6D90A00480A77 /* MainBlock.swift in Sources */,
+				6CB931F124C187C100137D27 /* WeatherForecastResponse.swift in Sources */,
+				6CDA529724C6D90A00480A77 /* WeatherForecastMain.swift in Sources */,
 				6C74E05B24C1E4750073BD6F /* NetworkService.swift in Sources */,
 				6CB931EF24C1879E00137D27 /* URLFactory.swift in Sources */,
 			);
