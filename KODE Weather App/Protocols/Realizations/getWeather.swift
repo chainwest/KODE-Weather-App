@@ -8,7 +8,7 @@ extension NetworkService: WeatherNetworkService {
         return Promise { seal in
             let params = [
                 "q": city,
-                "appid": ApiKey.APIKey
+                "appid": ApiKey.ApiKey
             ]
             
             firstly {
