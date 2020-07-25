@@ -10,6 +10,9 @@
 		6C276DE224C587C30029E801 /* GeoCodingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C276DE124C587C30029E801 /* GeoCodingService.swift */; };
 		6CB931EF24C1879E00137D27 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB931EE24C1879E00137D27 /* Constants.swift */; };
 		6CB931F124C187C100137D27 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB931F024C187C100137D27 /* Response.swift */; };
+		6CBEC7A824CC8C2D0067D2CA /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CBEC7A524CC8C2D0067D2CA /* CardView.xib */; };
+		6CBEC7A924CC8C2D0067D2CA /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBEC7A624CC8C2D0067D2CA /* CardViewModel.swift */; };
+		6CBEC7AA24CC8C2D0067D2CA /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBEC7A724CC8C2D0067D2CA /* CardView.swift */; };
 		6CC0478524C846E6009DD99A /* MainBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC0478424C846E6009DD99A /* MainBlock.swift */; };
 		6CC0478724C846F1009DD99A /* WeatherBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC0478624C846F1009DD99A /* WeatherBlock.swift */; };
 		6CC0478924C846FC009DD99A /* WindBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC0478824C846FC009DD99A /* WindBlock.swift */; };
@@ -27,6 +30,9 @@
 		6C276DE124C587C30029E801 /* GeoCodingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoCodingService.swift; sourceTree = "<group>"; };
 		6CB931EE24C1879E00137D27 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6CB931F024C187C100137D27 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		6CBEC7A524CC8C2D0067D2CA /* CardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
+		6CBEC7A624CC8C2D0067D2CA /* CardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
+		6CBEC7A724CC8C2D0067D2CA /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		6CC0478424C846E6009DD99A /* MainBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBlock.swift; sourceTree = "<group>"; };
 		6CC0478624C846F1009DD99A /* WeatherBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherBlock.swift; sourceTree = "<group>"; };
 		6CC0478824C846FC009DD99A /* WindBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindBlock.swift; sourceTree = "<group>"; };
@@ -99,6 +105,9 @@
 			isa = PBXGroup;
 			children = (
 				6CD67AA824C8C78600E68825 /* MapViewModel.swift */,
+				6CBEC7A724CC8C2D0067D2CA /* CardView.swift */,
+				6CBEC7A524CC8C2D0067D2CA /* CardView.xib */,
+				6CBEC7A624CC8C2D0067D2CA /* CardViewModel.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -208,6 +217,7 @@
 			files = (
 				DAFD68C824C035870040C8F2 /* LaunchScreen.storyboard in Resources */,
 				DAFD68C524C035870040C8F2 /* Assets.xcassets in Resources */,
+				6CBEC7A824CC8C2D0067D2CA /* CardView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,10 +274,12 @@
 				DAFD68BC24C0357F0040C8F2 /* AppDelegate.swift in Sources */,
 				6CB931F124C187C100137D27 /* Response.swift in Sources */,
 				6CC0478524C846E6009DD99A /* MainBlock.swift in Sources */,
+				6CBEC7A924CC8C2D0067D2CA /* CardViewModel.swift in Sources */,
 				6C276DE224C587C30029E801 /* GeoCodingService.swift in Sources */,
 				6CB931EF24C1879E00137D27 /* Constants.swift in Sources */,
 				6CD67AAB24C8C85600E68825 /* AppDependency.swift in Sources */,
 				6CC0478924C846FC009DD99A /* WindBlock.swift in Sources */,
+				6CBEC7AA24CC8C2D0067D2CA /* CardView.swift in Sources */,
 				6CD67AA924C8C78600E68825 /* MapViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
