@@ -4,7 +4,7 @@
 
 import Foundation
 
-struct WeatherBlock: Decodable {
+struct WeatherForecastProperties: Decodable {
     var id: Int
     var main: String
     var description: String

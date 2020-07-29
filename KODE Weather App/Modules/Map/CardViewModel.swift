@@ -1,7 +1,7 @@
 //
 //  CardViewModel.swift
 
-import Foundation
+import MapKit
 
 protocol CardViewModelDelegate: class {
     func cardViewModelDidTapClose(_ viewModel: CardViewModel)
@@ -11,8 +11,11 @@ protocol CardViewModelDelegate: class {
 class CardViewModel {
     weak var delegate: CardViewModelDelegate?
     
-    private(set) var city = ""
-    private(set) var coordinates = ""
+    var city = String()
+    var coordinatesString = String()
+    var coordinates = CLLocationCoordinate2D()
+    
+    var onDidUpdate: (() -> Void)?
     
     init(delegate: CardViewModelDelegate) {
         self.delegate = delegate

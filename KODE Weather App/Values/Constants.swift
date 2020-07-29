@@ -1,8 +1,8 @@
 //
 //  Constants.swift
 
-import Foundation
+import MapKit
 
-struct Constants {
-    static let url = "http://api.openweathermap.org/"
+enum Constants {
+    static let startCoordinates = CLLocationCoordinate2D(latitude: 37.7749300, longitude: -122.4194200)
 }

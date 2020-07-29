@@ -13,6 +13,7 @@ class MapViewModel {
     weak var delegate: MapViewModelDelegate?
     let dependencies: Dependency
     
+    var cardIsOpened = false
     private(set) var selectedCity: String?
     private(set) var selectedCoordinates: CLLocationCoordinate2D?
     
@@ -38,14 +39,24 @@ class MapViewModel {
             dependencies.geoCodingService.coordinatesToCity(coordinate: coordinates)
         }.done { result in
             self.selectedCity = result.locality
-            self.onDidUpdate?()
+            self.delegate?.mapViewModel(self, didRequestShowWeatherFor: result.locality ?? "-")
         }.catch { error in
             print(error)
         }
     }
     
-    func showWeatherScreen() {
-        guard let city = selectedCity else { return }
-        delegate?.mapViewModel(self, didRequestShowWeatherFor: city)
+    func updateCoordinate(_ coordinate: CLLocationCoordinate2D) {
+        selectedCoordinates = coordinate
+    }
+}
+
+extension MapViewModel: CardViewModelDelegate {
+    func cardViewModelDidTapClose(_ viewModel: CardViewModel) {
+        cardIsOpened = false
+    }
+    
+    func cardViewModelDidTapShowWeather(_ viewModel: CardViewModel) {
+        guard let coordinates = selectedCoordinates else { return }
+        getCity(for: coordinates)
     }
 }
