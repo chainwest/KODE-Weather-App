@@ -19,15 +19,7 @@ class MapCoordinator: Coordinator {
     override func start() {
         viewModel.delegate = self
         let mapViewController = MapViewController(viewModel: viewModel)
-        setupSearchBar(mapViewController)
         rootViewController.setViewControllers([mapViewController], animated: false)
-    }
-    
-    func setupSearchBar(_ viewController: UIViewController) {
-        viewController.navigationController?.navigationBar.tintColor = .white
-        let searchController = UISearchController(searchResultsController: nil)
-        searchController.obscuresBackgroundDuringPresentation = false
-        viewController.navigationItem.searchController = searchController
     }
 }
 

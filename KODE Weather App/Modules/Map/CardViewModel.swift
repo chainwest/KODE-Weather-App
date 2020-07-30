@@ -14,8 +14,7 @@ class CardViewModel {
     var city = String()
     var coordinatesString = String()
     var coordinates = CLLocationCoordinate2D()
-    
-    var onDidUpdate: (() -> Void)?
+    var cardIsOpened = false
     
     init(delegate: CardViewModelDelegate) {
         self.delegate = delegate

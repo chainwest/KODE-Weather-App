@@ -2,6 +2,7 @@
 //  WeatherViewModel.swift
 
 import PromiseKit
+import Alamofire
 
 protocol WeatherViewModelDelegate: class {
     func viewModelDidFinish()

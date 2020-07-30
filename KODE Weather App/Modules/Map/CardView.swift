@@ -38,6 +38,14 @@ class CardView: UIView {
         commonInit()
     }
     
+    @IBAction func onCloseButton(_ sender: Any) {
+        viewModel?.onCloseButton()
+    }
+    
+    @IBAction func onShowWeatherButton(_ sender: Any) {
+        viewModel?.onShowWeather()
+    }
+    
     private func commonInit() {
         Bundle.main.loadNibNamed("CardView", owner: self, options: nil)
         addSubview(contentView)
@@ -47,13 +55,5 @@ class CardView: UIView {
     
     func setupCardView(with viewModel: CardViewModel) {
         self.viewModel = viewModel
-        bindToViewModel()
-    }
-    
-    func bindToViewModel() {
-        viewModel?.onDidUpdate = { [weak self] in
-            self?.cityLabel.text = self?.viewModel?.city
-            self?.coordinatesLabel.text = self?.viewModel?.coordinatesString
-        }
     }
 }

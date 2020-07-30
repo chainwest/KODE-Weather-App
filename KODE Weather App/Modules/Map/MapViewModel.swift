@@ -16,6 +16,7 @@ class MapViewModel {
     var cardIsOpened = false
     private(set) var selectedCity: String?
     private(set) var selectedCoordinates: CLLocationCoordinate2D?
+    private(set) var selectedCoordinatesString: String?
     
     var onDidUpdate: (() -> Void)?
     
@@ -39,7 +40,7 @@ class MapViewModel {
             dependencies.geoCodingService.coordinatesToCity(coordinate: coordinates)
         }.done { result in
             self.selectedCity = result.locality
-            self.delegate?.mapViewModel(self, didRequestShowWeatherFor: result.locality ?? "-")
+            self.onDidUpdate?()
         }.catch { error in
             print(error)
         }
@@ -47,16 +48,23 @@ class MapViewModel {
     
     func updateCoordinate(_ coordinate: CLLocationCoordinate2D) {
         selectedCoordinates = coordinate
+        coordinatesToString()
+    }
+    
+    func coordinatesToString() {
+        guard let latitude: String = selectedCoordinates?.latitude.description else { return }
+        guard let longitude: String = selectedCoordinates?.longitude.description else { return }
+        selectedCoordinatesString = latitude + " " + longitude
     }
 }
 
 extension MapViewModel: CardViewModelDelegate {
     func cardViewModelDidTapClose(_ viewModel: CardViewModel) {
-        cardIsOpened = false
+        viewModel.cardIsOpened = false
     }
     
     func cardViewModelDidTapShowWeather(_ viewModel: CardViewModel) {
-        guard let coordinates = selectedCoordinates else { return }
-        getCity(for: coordinates)
+        guard let city = selectedCity else { return }
+        delegate?.mapViewModel(self, didRequestShowWeatherFor: city)
     }
 }

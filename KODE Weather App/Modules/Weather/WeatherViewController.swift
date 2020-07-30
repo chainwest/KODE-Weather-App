@@ -2,6 +2,7 @@
 //  WeatherViewController.swift
 
 import UIKit
+import Alamofire
 import Kingfisher
 
 class WeatherViewController: UIViewController {
@@ -9,12 +10,12 @@ class WeatherViewController: UIViewController {
     
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
-    @IBOutlet weak var weatherIcon: UIImageView!
-    @IBOutlet weak var weatherDescription: UILabel!
-    @IBOutlet weak var humidity: UILabel!
-    @IBOutlet weak var windSpeed: UILabel!
-    @IBOutlet weak var pressure: UILabel!
-    @IBOutlet weak var weatherImage: UIImageView!
+    @IBOutlet weak var weatherStateIcon: UIImageView!
+    @IBOutlet weak var weatherStateLabel: UILabel!
+    @IBOutlet weak var humidityLabel: UILabel!
+    @IBOutlet weak var windLabel: UILabel!
+    @IBOutlet weak var pressureLabel: UILabel!
+    @IBOutlet weak var weatherStateImage: UIImageView!
     
     init(viewModel: WeatherViewModel) {
         self.viewModel = viewModel
@@ -36,12 +37,10 @@ class WeatherViewController: UIViewController {
             let url = URL(string: URLFactory.baseURL + "img/wn/" + (self?.viewModel.icon)! + "@2x.png")
             self?.cityLabel.text = self?.viewModel.cityName
             self?.temperatureLabel.text = self?.viewModel.temperature
-            self?.humidity.text = self?.viewModel.humidity
-            self?.windSpeed.text = self?.viewModel.windSpeed
-            self?.pressure.text = self?.viewModel.pressure
-            self?.weatherDescription.text = self?.viewModel.weatherDescription
-            self?.weatherIcon.kf.setImage(with: url)
+            self?.humidityLabel.text = self?.viewModel.humidity
+            self?.windLabel.text = self?.viewModel.windSpeed
+            self?.pressureLabel.text = self?.viewModel.pressure
+            self?.weatherStateIcon.kf.setImage(with: url)
         }
     }
-
 }
