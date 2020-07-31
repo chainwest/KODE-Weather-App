@@ -2,22 +2,14 @@
 //  getWeather.swift
 
 import PromiseKit
+import Alamofire
 
 extension NetworkService: WeatherNetworkService {
-    func getWeather(city: String) -> Promise<WeatherForecastResponse> {
-        return Promise { seal in
-            let params = [
-                "q": city,
-                "appid": ApiKey.apiKey
-            ]
-            
-            firstly {
-                baseRequest(url: URLFactory.baseURL, method: .get, params: params)
-            }.done { result in
-                seal.fulfill(result)
-            }.catch { error in
-                print(error)
-            }
-        }
+    func getWeatherForecast(city: String) -> Promise<WeatherForecastResponse> {
+        let params = [
+            "q": city,
+            "appid": ApiKey.apiKey
+        ]
+        return baseRequest(url: URLFactory.baseURL + "/data/2.5/weather", method: .get, params: params)
     }
 }

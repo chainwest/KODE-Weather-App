@@ -11,7 +11,6 @@ class NetworkService {
             switch response.result {
             case .success(let data):
                 let decoder = JSONDecoder()
-                
                 do {
                     let decodedData = try decoder.decode(T.self, from: data)
                     seal.fulfill(decodedData)

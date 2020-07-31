@@ -28,18 +28,19 @@ class WeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.getWeather()
         bindToViewModel()
+        viewModel.getWeather()
     }
     
     func bindToViewModel() {
         viewModel.onDidUpdate = { [weak self] in
-            let url = URL(string: URLFactory.baseURL + "img/wn/" + (self?.viewModel.icon)! + "@2x.png")
+            let url = URL(string: URLFactory.iconBaseURL + (self?.viewModel.icon)! + "@2x.png")
             self?.cityLabel.text = self?.viewModel.cityName
             self?.temperatureLabel.text = self?.viewModel.temperature
             self?.humidityLabel.text = self?.viewModel.humidity
             self?.windLabel.text = self?.viewModel.windSpeed
             self?.pressureLabel.text = self?.viewModel.pressure
+            self?.weatherStateLabel.text = self?.viewModel.weatherDescription
             self?.weatherStateIcon.kf.setImage(with: url)
         }
     }

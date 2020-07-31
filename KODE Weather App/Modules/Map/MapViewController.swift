@@ -58,7 +58,6 @@ class MapViewController: UIViewController {
         gestureRecognizer.delegate = self
         let pin = MKPlacemark(coordinate: location)
         let coordinateRegion = MKCoordinateRegion(center: pin.coordinate, latitudinalMeters: 1000000, longitudinalMeters: 1000000)
-        
         mapView.addGestureRecognizer(gestureRecognizer)
         mapView.setRegion(coordinateRegion, animated: true)
         mapView.addAnnotation(pin)
@@ -112,11 +111,12 @@ extension MapViewController: UISearchResultsUpdating {
     guard !text.isEmpty else { return }
     viewModel.getCoordinates(for: text)
     viewModel.onDidUpdate = { [weak self] in
-        guard let coordinates = self?.viewModel.selectedCoordinates else { return }
-        self?.viewModel.getCity(for: coordinates)
-        let pin = MKPlacemark(coordinate: coordinates)
+        guard let selectedCoordinate = self?.viewModel.selectedCoordinates else { return }
+        self?.viewModel.getCity(for: selectedCoordinate)
+        let pin = MKPlacemark(coordinate: selectedCoordinate)
         self?.mapView.removeAnnotations((self?.mapView.annotations)!)
         self?.mapView.addAnnotation(pin)
+        self?.mapView.setCenter(selectedCoordinate, animated: true)
     }
   }
 }

@@ -107,8 +107,8 @@
 			isa = PBXGroup;
 			children = (
 				6CB931F024C187C100137D27 /* WeatherForecastResponse.swift */,
-				6CC0478424C846E6009DD99A /* WeatherForecastMain.swift */,
 				6CC0478624C846F1009DD99A /* WeatherForecastProperties.swift */,
+				6CC0478424C846E6009DD99A /* WeatherForecastMain.swift */,
 				6CC0478824C846FC009DD99A /* WeatherForecastWind.swift */,
 			);
 			path = Model;

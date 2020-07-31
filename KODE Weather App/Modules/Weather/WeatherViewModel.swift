@@ -30,13 +30,17 @@ class WeatherViewModel {
     
     func getWeather() {
         firstly {
-            dependencies.networkService.getWeather(city: cityName)
-        }.done { result in
-            self.temperature = String(result.main.temp)
-            self.humidity = String(result.main.humidity)
+            dependencies.networkService.getWeatherForecast(city: cityName)
+        }.done { (result: WeatherForecastResponse) in
+            let celsium = Int(result.main.temp - 273.15)
+            self.temperature = String(celsium)
+            self.humidity = String(result.main.humidity) + "%"
             self.windSpeed = String(result.wind.speed)
-            self.pressure = String(result.main.pressure)
+            self.pressure = String(result.main.pressure) + " mm Hg"
             self.weatherDescription = String(result.weather.description)
+            if result.weather.first?.icon != nil {
+                self.icon = result.weather.first!.icon
+            }
             self.onDidUpdate?()
         }.catch { error in
             print(error)
