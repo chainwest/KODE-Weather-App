@@ -4,7 +4,7 @@
 import MapKit
 
 protocol CardViewModelDelegate: class {
-    func cardViewModelDidTapClose(_ viewModel: CardViewModel)
+    func cardViewModelDidTapClose()
     func cardViewModelDidTapShowWeather(_ viewModel: CardViewModel)
 }
 
@@ -21,7 +21,7 @@ class CardViewModel {
     }
     
     func onCloseButton() {
-        delegate?.cardViewModelDidTapClose(self)
+        delegate?.cardViewModelDidTapClose()
     }
     
     func onShowWeather() {

@@ -7,12 +7,13 @@ import SnapKit
 
 class MapViewController: UIViewController {
     let viewModel: MapViewModel
+    let cardView: CardView
     
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var cardView: CardView!
     
     init(viewModel: MapViewModel) {
         self.viewModel = viewModel
+        self.cardView = CardView()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -22,27 +23,22 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bindToViewModel()
         setupMap(location: Constants.startCoordinates)
         setupSearchBar(self)
         setupCardView()
+        bindToViewModel()
     }
     
     func bindToViewModel() {
         viewModel.onDidUpdate = { [weak self] in
-            guard let cityName = self?.viewModel.selectedCity else {
-                self?.closeCard()
+            guard let self = self else { return }
+            guard let cityName = self.viewModel.selectedCity else {
+                self.closeCard()
                 return
             }
-            self?.cardView.coordinatesLabel.text = self?.viewModel.selectedCoordinatesString
-            self?.cardView.cityLabel.text = cityName
-            
-            guard let isOpened = self?.cardView.viewModel!.cardIsOpened else { return }
-            if isOpened {
-                self?.closeCard()
-            } else {
-                self?.showCard()
-            }
+            self.cardView.coordinatesLabel.text = self.viewModel.selectedCoordinatesString
+            self.cardView.cityLabel.text = cityName
+            self.showCard()
         }
     }
     
@@ -64,17 +60,28 @@ class MapViewController: UIViewController {
     }
     
     func setupCardView() {
-        let cardViewModel = CardViewModel(delegate: viewModel)
+        let cardViewModel = CardViewModel(delegate: self)
         cardView.setupCardView(with: cardViewModel)
+        mapView.addSubview(cardView)
+        setupCardConstraints()
+    }
+    
+    func setupCardConstraints() {
+        cardView.snp.makeConstraints { make in
+            make.left.equalTo(mapView).offset(20)
+            make.right.equalTo(mapView).offset(-20)
+            make.bottom.equalTo(mapView).offset(200)
+            make.height.equalTo(200)
+        }
     }
     
     func showCard() {
         UIView.animate(withDuration: 0.2) {
-            self.cardView.snp.makeConstraints { make in
-                make.height.equalTo(150)
+            self.cardView.snp.updateConstraints { make in
                 make.left.equalTo(self.mapView).offset(20)
-                make.bottom.equalTo(self.mapView).offset(-20)
                 make.right.equalTo(self.mapView).offset(-20)
+                make.bottom.equalTo(self.mapView).offset(-20)
+                make.height.equalTo(200)
             }
             self.view.layoutIfNeeded()
         }
@@ -82,11 +89,11 @@ class MapViewController: UIViewController {
 
     func closeCard() {
         UIView.animate(withDuration: 0.2) {
-            self.cardView.snp.makeConstraints { make in
-                make.height.equalTo(150)
+            self.cardView.snp.updateConstraints { make in
                 make.left.equalTo(self.mapView).offset(20)
-                make.bottom.equalTo(self.mapView).offset(220)
                 make.right.equalTo(self.mapView).offset(-20)
+                make.bottom.equalTo(self.mapView).offset(200)
+                make.height.equalTo(200)
             }
             self.view.layoutIfNeeded()
         }
@@ -110,13 +117,16 @@ extension MapViewController: UISearchResultsUpdating {
     guard let text = searchController.searchBar.text else { return }
     guard !text.isEmpty else { return }
     viewModel.getCoordinates(for: text)
-    viewModel.onDidUpdate = { [weak self] in
-        guard let selectedCoordinate = self?.viewModel.selectedCoordinates else { return }
-        self?.viewModel.getCity(for: selectedCoordinate)
-        let pin = MKPlacemark(coordinate: selectedCoordinate)
-        self?.mapView.removeAnnotations((self?.mapView.annotations)!)
-        self?.mapView.addAnnotation(pin)
-        self?.mapView.setCenter(selectedCoordinate, animated: true)
-    }
   }
+}
+
+extension MapViewController: CardViewModelDelegate {
+    func cardViewModelDidTapClose() {
+        closeCard()
+    }
+    
+    func cardViewModelDidTapShowWeather(_ viewModel: CardViewModel) {
+        guard let city = self.viewModel.selectedCity else { return }
+        self.viewModel.delegate?.mapViewModel(self.viewModel, didRequestShowWeatherFor: city)
+    }
 }

@@ -2,6 +2,7 @@
 //  CardView.swift
 
 import UIKit
+import SnapKit
 
 class CardView: UIView {
     var viewModel: CardViewModel?

@@ -15,7 +15,13 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var humidityLabel: UILabel!
     @IBOutlet weak var windLabel: UILabel!
     @IBOutlet weak var pressureLabel: UILabel!
-    @IBOutlet weak var weatherStateImage: UIImageView!
+    @IBOutlet weak var weatherStateImage: UIImageView! {
+        didSet {
+            weatherStateImage.layer.masksToBounds = true
+            weatherStateImage.layer.cornerRadius = 200
+            weatherStateImage.layer.maskedCorners = [.layerMinXMinYCorner]
+        }
+    }
     
     init(viewModel: WeatherViewModel) {
         self.viewModel = viewModel
@@ -35,13 +41,36 @@ class WeatherViewController: UIViewController {
     func bindToViewModel() {
         viewModel.onDidUpdate = { [weak self] in
             let url = URL(string: URLFactory.iconBaseURL + (self?.viewModel.icon)! + "@2x.png")
+            let myid = self?.viewModel.id
             self?.cityLabel.text = self?.viewModel.cityName
             self?.temperatureLabel.text = self?.viewModel.temperature
             self?.humidityLabel.text = self?.viewModel.humidity
             self?.windLabel.text = self?.viewModel.windSpeed
             self?.pressureLabel.text = self?.viewModel.pressure
-            self?.weatherStateLabel.text = self?.viewModel.weatherDescription
+            //self?.weatherStateLabel.text = self?.viewModel.weatherDescription
+            self?.setupWeatherConditionImage(myid!)
             self?.weatherStateIcon.kf.setImage(with: url)
+        }
+    }
+    
+    func setupWeatherConditionImage(_ id: Int) {
+        switch id {
+        case 200...232:
+            self.weatherStateImage.image = UIImage(named: "Thunderstorm")
+        case 300...321:
+            self.weatherStateImage.image = UIImage(named: "Drizzle")
+        case 500...531:
+            self.weatherStateImage.image = UIImage(named: "Rain")
+        case 600...622:
+            self.weatherStateImage.image = UIImage(named: "Snow")
+        case 701...781:
+            self.weatherStateImage.image = UIImage(named: "Thunderstorm")
+        case 800:
+            self.weatherStateImage.image = UIImage(named: "Clear")
+        case 801...804:
+            self.weatherStateImage.image = UIImage(named: "Clouds")
+        default:
+            self.weatherStateImage.image = UIImage(named: "Clear")
         }
     }
 }

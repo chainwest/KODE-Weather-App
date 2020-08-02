@@ -9,7 +9,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapViewController" customModule="KODE_Weather_App" customModuleProvider="target">
             <connections>
-                <outlet property="cardView" destination="BD9-PH-lT1" id="hYY-Wr-9eo"/>
                 <outlet property="mapView" destination="zKo-gu-grQ" id="UvE-4h-NUk"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -22,11 +21,6 @@
                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zKo-gu-grQ">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                 </mapView>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BD9-PH-lT1" customClass="CardView" customModule="KODE_Weather_App" customModuleProvider="target">
-                    <rect key="frame" x="20" y="912" width="374" height="150"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </view>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>

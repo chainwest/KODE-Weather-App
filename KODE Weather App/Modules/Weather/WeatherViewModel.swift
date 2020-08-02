@@ -20,6 +20,7 @@ class WeatherViewModel {
     private(set) var pressure = String()
     private(set) var weatherDescription = String()
     private(set) var icon = String()
+    private(set) var id = Int()
     
     var onDidUpdate: (() -> Void)?
     
@@ -33,6 +34,7 @@ class WeatherViewModel {
             dependencies.networkService.getWeatherForecast(city: cityName)
         }.done { (result: WeatherForecastResponse) in
             let celsium = Int(result.main.temp - 273.15)
+            let description = result.weather.description
             self.temperature = String(celsium)
             self.humidity = String(result.main.humidity) + "%"
             self.windSpeed = String(result.wind.speed)
@@ -40,6 +42,9 @@ class WeatherViewModel {
             self.weatherDescription = String(result.weather.description)
             if result.weather.first?.icon != nil {
                 self.icon = result.weather.first!.icon
+            }
+            if result.weather.first?.id != nil {
+                self.id = result.weather.first!.id
             }
             self.onDidUpdate?()
         }.catch { error in

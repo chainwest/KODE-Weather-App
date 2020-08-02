@@ -13,7 +13,6 @@ class MapViewModel {
     weak var delegate: MapViewModelDelegate?
     let dependencies: Dependency
     
-    var cardIsOpened = false
     private(set) var selectedCity: String?
     private(set) var selectedCoordinates: CLLocationCoordinate2D?
     private(set) var selectedCoordinatesString: String?
@@ -55,16 +54,5 @@ class MapViewModel {
         guard let latitude: String = selectedCoordinates?.latitude.description else { return }
         guard let longitude: String = selectedCoordinates?.longitude.description else { return }
         selectedCoordinatesString = latitude + " " + longitude
-    }
-}
-
-extension MapViewModel: CardViewModelDelegate {
-    func cardViewModelDidTapClose(_ viewModel: CardViewModel) {
-        viewModel.cardIsOpened = false
-    }
-    
-    func cardViewModelDidTapShowWeather(_ viewModel: CardViewModel) {
-        guard let city = selectedCity else { return }
-        delegate?.mapViewModel(self, didRequestShowWeatherFor: city)
     }
 }
