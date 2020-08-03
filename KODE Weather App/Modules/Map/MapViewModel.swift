@@ -16,7 +16,6 @@ class MapViewModel {
     var selectedCity: String?
     private(set) var selectedCoordinates: CLLocationCoordinate2D?
     private(set) var selectedCoordinatesString: String?
-    private(set) var isLoading: Bool?
     
     var onDidUpdate: (() -> Void)?
     
@@ -28,7 +27,6 @@ class MapViewModel {
         firstly {
             dependencies.geoCodingService.cityToCoordinates(city: city)
         }.done { result in
-            self.isLoading = false
             self.selectedCoordinates = result.location?.coordinate
             self.coordinatesToString()
             self.onDidUpdate?()
@@ -41,7 +39,6 @@ class MapViewModel {
         firstly {
             dependencies.geoCodingService.coordinatesToCity(coordinate: coordinates)
         }.done { result in
-            self.isLoading = false
             self.selectedCity = result.locality
             self.onDidUpdate?()
         }.catch { error in

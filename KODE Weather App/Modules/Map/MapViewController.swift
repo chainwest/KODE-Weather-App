@@ -39,14 +39,6 @@ class MapViewController: UIViewController {
                 self.closeCard()
                 return
             }
-            guard let isLoading = self.viewModel.isLoading else { return }
-            
-            if isLoading {
-                SVProgressHUD.show()
-            } else {
-                SVProgressHUD.dismiss()
-            }
-            
             guard let selectedCoordinates = self.viewModel.selectedCoordinates else { return }
             let pin = MKPlacemark(coordinate: selectedCoordinates)
             self.mapView.removeAnnotations(self.mapView.annotations)
@@ -61,12 +53,21 @@ class MapViewController: UIViewController {
     
     private func setupSearchBar(_ viewController: UIViewController) {
         let searchController = UISearchController(searchResultsController: nil)
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = .white
+        viewController.navigationItem.searchController = searchController
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchResultsUpdater = self
         searchController.searchBar.backgroundColor = .white
         searchController.searchBar.isTranslucent = false
-        viewController.navigationController?.navigationBar.barTintColor = .white
-        viewController.navigationItem.searchController = searchController
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Map", style: .plain, target: nil, action: nil)
+        navigationItem.title = "Global Weather"
+        navigationItem.largeTitleDisplayMode = .never
+        navigationController?.navigationBar.backgroundColor = .white
+        navigationController?.navigationBar.barTintColor = .systemBlue
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
     
     private func setupMap(location: CLLocationCoordinate2D) {
