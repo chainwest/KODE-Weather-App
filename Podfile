@@ -11,5 +11,6 @@ target 'KODE Weather App' do
   pod 'SwiftLint'
   pod 'PromiseKit'
   pod 'SnapKit'
+  pod 'SVProgressHUD'
 
 end

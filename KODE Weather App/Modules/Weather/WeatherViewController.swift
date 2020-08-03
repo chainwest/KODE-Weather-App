@@ -6,22 +6,16 @@ import Alamofire
 import Kingfisher
 
 class WeatherViewController: UIViewController {
-    let viewModel: WeatherViewModel
+    private let viewModel: WeatherViewModel
     
-    @IBOutlet weak var cityLabel: UILabel!
-    @IBOutlet weak var temperatureLabel: UILabel!
-    @IBOutlet weak var weatherStateIcon: UIImageView!
-    @IBOutlet weak var weatherStateLabel: UILabel!
-    @IBOutlet weak var humidityLabel: UILabel!
-    @IBOutlet weak var windLabel: UILabel!
-    @IBOutlet weak var pressureLabel: UILabel!
-    @IBOutlet weak var weatherStateImage: UIImageView! {
-        didSet {
-            weatherStateImage.layer.masksToBounds = true
-            weatherStateImage.layer.cornerRadius = 200
-            weatherStateImage.layer.maskedCorners = [.layerMinXMinYCorner]
-        }
-    }
+    @IBOutlet private weak var cityLabel: UILabel!
+    @IBOutlet private weak var temperatureLabel: UILabel!
+    @IBOutlet private weak var weatherStateIcon: UIImageView!
+    @IBOutlet private weak var weatherStateLabel: UILabel!
+    @IBOutlet private weak var humidityLabel: UILabel!
+    @IBOutlet private weak var windLabel: UILabel!
+    @IBOutlet private weak var pressureLabel: UILabel!
+    @IBOutlet private weak var weatherStateImage: UIImageView!
     
     init(viewModel: WeatherViewModel) {
         self.viewModel = viewModel
@@ -38,22 +32,23 @@ class WeatherViewController: UIViewController {
         viewModel.getWeather()
     }
     
-    func bindToViewModel() {
+    private func bindToViewModel() {
         viewModel.onDidUpdate = { [weak self] in
-            let url = URL(string: URLFactory.iconBaseURL + (self?.viewModel.icon)! + "@2x.png")
-            let myid = self?.viewModel.id
-            self?.cityLabel.text = self?.viewModel.cityName
-            self?.temperatureLabel.text = self?.viewModel.temperature
-            self?.humidityLabel.text = self?.viewModel.humidity
-            self?.windLabel.text = self?.viewModel.windSpeed
-            self?.pressureLabel.text = self?.viewModel.pressure
-            //self?.weatherStateLabel.text = self?.viewModel.weatherDescription
-            self?.setupWeatherConditionImage(myid!)
-            self?.weatherStateIcon.kf.setImage(with: url)
+            guard let self = self else { return }
+            let url = URL(string: URLFactory.iconBaseURL + (self.viewModel.icon) + "@2x.png")
+            let myid = self.viewModel.id
+            self.cityLabel.text = self.viewModel.cityName
+            self.temperatureLabel.text = self.viewModel.temperature
+            self.humidityLabel.text = self.viewModel.humidity
+            self.windLabel.text = self.viewModel.windSpeed
+            self.pressureLabel.text = self.viewModel.pressure
+            self.weatherStateLabel.text = self.viewModel.weatherDescription
+            self.setupWeatherConditionImage(myid)
+            self.weatherStateIcon.kf.setImage(with: url)
         }
     }
     
-    func setupWeatherConditionImage(_ id: Int) {
+    private func setupWeatherConditionImage(_ id: Int) {
         switch id {
         case 200...232:
             self.weatherStateImage.image = UIImage(named: "Thunderstorm")

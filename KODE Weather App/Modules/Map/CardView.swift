@@ -5,9 +5,9 @@ import UIKit
 import SnapKit
 
 class CardView: UIView {
-    var viewModel: CardViewModel?
+    private var viewModel: CardViewModel?
     
-    @IBOutlet var contentView: UIView! {
+    @IBOutlet private var contentView: UIView! {
         didSet {
             contentView.layer.masksToBounds = true
             contentView.layer.cornerRadius = 16
@@ -17,10 +17,10 @@ class CardView: UIView {
             contentView.layer.shadowRadius = 10
         }
     }
-    @IBOutlet weak var cityLabel: UILabel!
-    @IBOutlet weak var coordinatesLabel: UILabel!
-    @IBOutlet weak var closeButton: UIButton!
-    @IBOutlet weak var shoWeatherButton: UIButton! {
+    @IBOutlet private weak var cityLabel: UILabel!
+    @IBOutlet private weak var coordinatesLabel: UILabel!
+    @IBOutlet private weak var closeButton: UIButton!
+    @IBOutlet private weak var shoWeatherButton: UIButton! {
         didSet {
             shoWeatherButton.layer.masksToBounds = true
             shoWeatherButton.layer.cornerRadius = 22
@@ -39,11 +39,11 @@ class CardView: UIView {
         commonInit()
     }
     
-    @IBAction func onCloseButton(_ sender: Any) {
+    @IBAction private func onCloseButton(_ sender: Any) {
         viewModel?.onCloseButton()
     }
     
-    @IBAction func onShowWeatherButton(_ sender: Any) {
+    @IBAction private func onShowWeatherButton(_ sender: Any) {
         viewModel?.onShowWeather()
     }
     
@@ -54,7 +54,12 @@ class CardView: UIView {
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
     
-    func setupCardView(with viewModel: CardViewModel) {
+    public func setupCardView(with viewModel: CardViewModel) {
         self.viewModel = viewModel
+    }
+    
+    public func setCityAndCoordinates(_ city: String?, _ coordinates: String?) {
+        self.cityLabel.text = city
+        self.coordinatesLabel.text = coordinates
     }
 }

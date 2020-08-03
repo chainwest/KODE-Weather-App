@@ -6,7 +6,7 @@ import UIKit
 class MapCoordinator: Coordinator {
     private let rootViewController: UINavigationController
     
-    var viewModel: MapViewModel = {
+    private var viewModel: MapViewModel = {
         let appDependecy = AppDependency.makeDefault()
         let mapViewModel = MapViewModel(dependencies: appDependecy)
         return mapViewModel
@@ -33,7 +33,7 @@ extension MapCoordinator: MapViewModelDelegate {
 }
 
 extension MapCoordinator: WeatherCoordinatorDelegate {
-    func didFinish(from coordinator: WeatherCoordinator) {
+    func weatherCoordinatorDidFinish(from coordinator: WeatherCoordinator) {
         removeChildCoordinator(coordinator)
     }
 }

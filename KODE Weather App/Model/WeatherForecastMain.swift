@@ -1,7 +1,6 @@
 //
 //  MainBlock.swift
 
-
 import Foundation
 
 struct WeatherForecastMain: Decodable {

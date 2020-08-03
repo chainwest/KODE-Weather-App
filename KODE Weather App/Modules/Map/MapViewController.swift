@@ -4,16 +4,19 @@
 import UIKit
 import MapKit
 import SnapKit
+import SVProgressHUD
 
 class MapViewController: UIViewController {
-    let viewModel: MapViewModel
-    let cardView: CardView
+    private let viewModel: MapViewModel
+    private let cardView: CardView
+    private let searchBarBackground: UIView
     
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet private weak var mapView: MKMapView!
     
     init(viewModel: MapViewModel) {
         self.viewModel = viewModel
         self.cardView = CardView()
+        self.searchBarBackground = UIView()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -23,33 +26,50 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bindToViewModel()
         setupMap(location: Constants.startCoordinates)
         setupSearchBar(self)
         setupCardView()
-        bindToViewModel()
     }
     
-    func bindToViewModel() {
+    private func bindToViewModel() {
         viewModel.onDidUpdate = { [weak self] in
             guard let self = self else { return }
             guard let cityName = self.viewModel.selectedCity else {
                 self.closeCard()
                 return
             }
-            self.cardView.coordinatesLabel.text = self.viewModel.selectedCoordinatesString
-            self.cardView.cityLabel.text = cityName
+            guard let isLoading = self.viewModel.isLoading else { return }
+            
+            if isLoading {
+                SVProgressHUD.show()
+            } else {
+                SVProgressHUD.dismiss()
+            }
+            
+            guard let selectedCoordinates = self.viewModel.selectedCoordinates else { return }
+            let pin = MKPlacemark(coordinate: selectedCoordinates)
+            self.mapView.removeAnnotations(self.mapView.annotations)
+            self.mapView.addAnnotation(pin)
+            self.mapView.setCenter(selectedCoordinates, animated: true)
+            self.viewModel.updateCoordinate(selectedCoordinates)
+            guard let cityCoordinatesString = self.viewModel.selectedCoordinatesString else { return }
+            self.cardView.setCityAndCoordinates(cityName, cityCoordinatesString)
             self.showCard()
         }
     }
     
-    func setupSearchBar(_ viewController: UIViewController) {
+    private func setupSearchBar(_ viewController: UIViewController) {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchResultsUpdater = self
+        searchController.searchBar.backgroundColor = .white
+        searchController.searchBar.isTranslucent = false
+        viewController.navigationController?.navigationBar.barTintColor = .white
         viewController.navigationItem.searchController = searchController
     }
     
-    func setupMap(location: CLLocationCoordinate2D) {
+    private func setupMap(location: CLLocationCoordinate2D) {
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(gestureReconizer:)))
         gestureRecognizer.delegate = self
         let pin = MKPlacemark(coordinate: location)
@@ -59,14 +79,14 @@ class MapViewController: UIViewController {
         mapView.addAnnotation(pin)
     }
     
-    func setupCardView() {
+    private func setupCardView() {
         let cardViewModel = CardViewModel(delegate: self)
         cardView.setupCardView(with: cardViewModel)
         mapView.addSubview(cardView)
         setupCardConstraints()
     }
     
-    func setupCardConstraints() {
+    private func setupCardConstraints() {
         cardView.snp.makeConstraints { make in
             make.left.equalTo(mapView).offset(20)
             make.right.equalTo(mapView).offset(-20)
@@ -75,7 +95,7 @@ class MapViewController: UIViewController {
         }
     }
     
-    func showCard() {
+    private func showCard() {
         UIView.animate(withDuration: 0.2) {
             self.cardView.snp.updateConstraints { make in
                 make.left.equalTo(self.mapView).offset(20)
@@ -87,7 +107,7 @@ class MapViewController: UIViewController {
         }
     }
 
-    func closeCard() {
+    private func closeCard() {
         UIView.animate(withDuration: 0.2) {
             self.cardView.snp.updateConstraints { make in
                 make.left.equalTo(self.mapView).offset(20)
@@ -104,9 +124,6 @@ extension MapViewController: UIGestureRecognizerDelegate {
   @objc func handleTap(gestureReconizer: UILongPressGestureRecognizer) {
     let location = gestureReconizer.location(in: mapView)
     let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
-    let pin = MKPlacemark(coordinate: coordinate)
-    mapView.removeAnnotations(mapView.annotations)
-    mapView.addAnnotation(pin)
     viewModel.updateCoordinate(coordinate)
     viewModel.getCity(for: coordinate)
   }
@@ -116,6 +133,7 @@ extension MapViewController: UISearchResultsUpdating {
   func updateSearchResults(for searchController: UISearchController) {
     guard let text = searchController.searchBar.text else { return }
     guard !text.isEmpty else { return }
+    viewModel.selectedCity = text
     viewModel.getCoordinates(for: text)
   }
 }

@@ -1,7 +1,6 @@
 //
 //  WindBlock.swift
 
-
 import Foundation
 
 struct WeatherForecastWind: Decodable {

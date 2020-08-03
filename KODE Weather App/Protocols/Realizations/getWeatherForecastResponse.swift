@@ -5,7 +5,7 @@ import PromiseKit
 import Alamofire
 
 extension NetworkService: WeatherNetworkService {
-    func getWeatherForecast(city: String) -> Promise<WeatherForecastResponse> {
+    public func getWeatherForecast(city: String) -> Promise<WeatherForecastResponse> {
         let params = [
             "q": city,
             "appid": ApiKey.apiKey

@@ -11,20 +11,15 @@ protocol CardViewModelDelegate: class {
 class CardViewModel {
     weak var delegate: CardViewModelDelegate?
     
-    var city = String()
-    var coordinatesString = String()
-    var coordinates = CLLocationCoordinate2D()
-    var cardIsOpened = false
-    
     init(delegate: CardViewModelDelegate) {
         self.delegate = delegate
     }
     
-    func onCloseButton() {
+    public func onCloseButton() {
         delegate?.cardViewModelDidTapClose()
     }
     
-    func onShowWeather() {
+    public func onShowWeather() {
         delegate?.cardViewModelDidTapShowWeather(self)
     }
 }

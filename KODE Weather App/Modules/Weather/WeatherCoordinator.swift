@@ -4,13 +4,13 @@
 import UIKit
 
 protocol WeatherCoordinatorDelegate: class {
-    func didFinish(from coordinator: WeatherCoordinator)
+    func weatherCoordinatorDidFinish(from coordinator: WeatherCoordinator)
 }
 
 class WeatherCoordinator: Coordinator {
     weak var coordinatorDelegate: WeatherCoordinatorDelegate?
     private let rootViewController: UINavigationController
-    let city: String
+    public let city: String
     
     init(rootViewController: UINavigationController, city: String) {
         self.rootViewController = rootViewController
@@ -26,12 +26,12 @@ class WeatherCoordinator: Coordinator {
     }
     
     override func finish() {
-        coordinatorDelegate?.didFinish(from: self)
+        coordinatorDelegate?.weatherCoordinatorDidFinish(from: self)
     }
 }
 
 extension WeatherCoordinator: WeatherViewModelDelegate {
-    func viewModelDidFinish() {
+    func weatherViewModelDidFinish() {
         finish()
     }
 }
