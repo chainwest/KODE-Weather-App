@@ -52,8 +52,6 @@ class MapViewModel {
     }
     
     public func coordinatesToString() {
-        guard let latitude: String = selectedCoordinates?.latitude.description else { return }
-        guard let longitude: String = selectedCoordinates?.longitude.description else { return }
-        selectedCoordinatesString = latitude + " " + longitude
+        selectedCoordinatesString = selectedCoordinates?.convertCoordinate
     }
 }
