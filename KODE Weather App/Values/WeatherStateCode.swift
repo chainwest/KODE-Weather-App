@@ -1,0 +1,4 @@
+//
+//  WeatherStateCode.swift
+
+import Foundation
