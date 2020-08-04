@@ -3,6 +3,7 @@
 
 import PromiseKit
 import Alamofire
+import SVProgressHUD
 
 protocol WeatherViewModelDelegate: class {
     func weatherViewModelDidFinish()
@@ -21,8 +22,10 @@ class WeatherViewModel {
     private(set) var weatherDescription = String()
     private(set) var icon = String()
     private(set) var id = Int()
+    private(set) var error = String()
     
     var onDidUpdate: (() -> Void)?
+    var onDidError: (() -> Void)?
     
     init(dependencies: Dependency, city: String) {
         self.dependencies = dependencies
@@ -30,9 +33,11 @@ class WeatherViewModel {
     }
     
     public func getWeather() {
+        SVProgressHUD.show()
         firstly {
             dependencies.networkService.getWeatherForecast(city: cityName)
         }.done { (result: WeatherForecastResponse) in
+            SVProgressHUD.dismiss()
             guard let icon = result.weather.first?.icon else { return }
             guard let id = result.weather.first?.id else { return }
             guard let description = result.weather.first?.description.capitalized else { return }
@@ -48,7 +53,8 @@ class WeatherViewModel {
             self.weatherDescription = description
             self.onDidUpdate?()
         }.catch { error in
-            print(error)
+            self.error = error.localizedDescription
+            self.onDidError?()
         }
     }
     

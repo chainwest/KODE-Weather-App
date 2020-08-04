@@ -46,6 +46,11 @@ class WeatherViewController: UIViewController {
             self.setupWeatherConditionImage(myid)
             self.weatherStateIcon.kf.setImage(with: url)
         }
+        
+        viewModel.onDidError = { [weak self] in
+            guard let error = self?.viewModel.error else { return }
+            self?.showError(error)
+        }
     }
     
     private func setupWeatherConditionImage(_ id: Int) {
@@ -67,5 +72,12 @@ class WeatherViewController: UIViewController {
         default:
             self.weatherStateImage.image = UIImage(named: "Clear")
         }
+    }
+    
+    private func showError(_ error: String) {
+        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
     }
 }

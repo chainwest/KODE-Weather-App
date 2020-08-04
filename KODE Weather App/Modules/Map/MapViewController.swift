@@ -47,6 +47,11 @@ class MapViewController: UIViewController {
             self.cardView.setCityAndCoordinates(cityName, cityCoordinatesString)
             self.showCard()
         }
+        
+        viewModel.onDidError = { [weak self] in
+            guard let error = self?.viewModel.error else { return }
+            self?.showError(error)
+        }
     }
     
     private func setupSearchBar(_ viewController: UIViewController) {
@@ -116,6 +121,13 @@ class MapViewController: UIViewController {
             }
             self.view.layoutIfNeeded()
         }
+    }
+    
+    private func showError(_ error: String) {
+        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
