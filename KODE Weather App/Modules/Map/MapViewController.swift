@@ -9,14 +9,12 @@ import SVProgressHUD
 class MapViewController: UIViewController {
     private let viewModel: MapViewModel
     private let cardView: CardView
-    private let searchBarBackground: UIView
     
     @IBOutlet private weak var mapView: MKMapView!
     
     init(viewModel: MapViewModel) {
         self.viewModel = viewModel
         self.cardView = CardView()
-        self.searchBarBackground = UIView()
         super.init(nibName: nil, bundle: nil)
     }
     

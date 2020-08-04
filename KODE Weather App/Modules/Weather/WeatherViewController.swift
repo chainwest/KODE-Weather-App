@@ -42,7 +42,7 @@ class WeatherViewController: UIViewController {
             self.humidityLabel.text = self.viewModel.humidity
             self.windLabel.text = self.viewModel.windSpeed
             self.pressureLabel.text = self.viewModel.pressure
-            self.weatherStateLabel.text = self.viewModel.weatherDescription
+            self.weatherStateLabel.text = self.viewModel.weatherDescription.description
             self.setupWeatherConditionImage(myid)
             self.weatherStateIcon.kf.setImage(with: url)
         }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C10B2A524D92F77004B397F /* Layer+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C10B2A424D92F77004B397F /* Layer+Shadow.swift */; };
 		6C276DE224C587C30029E801 /* GeoCodingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C276DE124C587C30029E801 /* GeoCodingService.swift */; };
 		6C7C54BF24D1D88E00821D09 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7C54BD24D1D88E00821D09 /* WeatherViewController.swift */; };
 		6C7C54C024D1D88E00821D09 /* WeatherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C7C54BE24D1D88E00821D09 /* WeatherViewController.xib */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		226B9FCF58B11ED313E1572B /* Pods-KODE Weather App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KODE Weather App.release.xcconfig"; path = "Target Support Files/Pods-KODE Weather App/Pods-KODE Weather App.release.xcconfig"; sourceTree = "<group>"; };
 		251F3BF0DF085B5AD1A8C7BF /* Pods_KODE_Weather_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KODE_Weather_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C10B2A424D92F77004B397F /* Layer+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Layer+Shadow.swift"; sourceTree = "<group>"; };
 		6C276DE124C587C30029E801 /* GeoCodingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoCodingService.swift; sourceTree = "<group>"; };
 		6C7C54BD24D1D88E00821D09 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		6C7C54BE24D1D88E00821D09 /* WeatherViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherViewController.xib; sourceTree = "<group>"; };
@@ -86,6 +88,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6C10B2A324D92F5F004B397F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				6C10B2A424D92F77004B397F /* Layer+Shadow.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		6C276DE024C587730029E801 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,7 +113,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6CB931EC24C1878700137D27 /* Model */ = {
+		6CB931EC24C1878700137D27 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				6CB931F024C187C100137D27 /* WeatherForecastResponse.swift */,
@@ -111,7 +121,7 @@
 				6CC0478424C846E6009DD99A /* WeatherForecastMain.swift */,
 				6CC0478824C846FC009DD99A /* WeatherForecastWind.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		6CB931ED24C1878F00137D27 /* Values */ = {
@@ -214,8 +224,9 @@
 		DAFD68BA24C0357F0040C8F2 /* KODE Weather App */ = {
 			isa = PBXGroup;
 			children = (
+				6C10B2A324D92F5F004B397F /* Helpers */,
 				6CB931ED24C1878F00137D27 /* Values */,
-				6CB931EC24C1878700137D27 /* Model */,
+				6CB931EC24C1878700137D27 /* Models */,
 				6CBEC7B024CCB4970067D2CA /* Protocols */,
 				6C276DE024C587730029E801 /* Services */,
 				6CD67AA624C8C73600E68825 /* Modules */,
@@ -384,6 +395,7 @@
 				6CBEC7B824CCB5A50067D2CA /* ApiKey.swift in Sources */,
 				6CBEC7B624CCB5860067D2CA /* getWeatherForecastResponse.swift in Sources */,
 				6CC0478924C846FC009DD99A /* WeatherForecastWind.swift in Sources */,
+				6C10B2A524D92F77004B397F /* Layer+Shadow.swift in Sources */,
 				6CBEC7AF24CCB39A0067D2CA /* NetworkService.swift in Sources */,
 				6CD67AA924C8C78600E68825 /* MapViewModel.swift in Sources */,
 				6CB1EF1024D0932C006D22B4 /* CardView.swift in Sources */,
