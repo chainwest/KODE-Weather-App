@@ -25,8 +25,8 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p2u-a8-UVx" userLabel="City Label">
-                    <rect key="frame" x="20" y="112" width="87" height="41"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seattle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p2u-a8-UVx" userLabel="City Label">
+                    <rect key="frame" x="20" y="112" width="113" height="41"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -44,7 +44,7 @@
                         <constraint firstAttribute="height" constant="87" id="eRF-bg-nDJ"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVF-cK-JBz" userLabel="Weather State Label">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Mist" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVF-cK-JBz" userLabel="Weather State Label">
                     <rect key="frame" x="20" y="452" width="112" height="22"/>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <nil key="textColor"/>
@@ -56,8 +56,8 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="orx-tt-tN1" userLabel="Humidity % Label">
-                    <rect key="frame" x="20" y="548.5" width="48" height="22"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="67%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="orx-tt-tN1" userLabel="Humidity % Label">
+                    <rect key="frame" x="20" y="548.5" width="38" height="22"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -68,8 +68,8 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1VK-r7-cjo" userLabel="Wind S Label">
-                    <rect key="frame" x="20" y="640.5" width="48" height="22"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N 3 m/s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1VK-r7-cjo" userLabel="Wind S Label">
+                    <rect key="frame" x="20" y="640.5" width="66.5" height="22"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -80,14 +80,14 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8vM-4H-c1s" userLabel="Pressure mm Label">
-                    <rect key="frame" x="20" y="728.5" width="48" height="22"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="763.63 mm Hg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8vM-4H-c1s" userLabel="Pressure mm Label">
+                    <rect key="frame" x="20" y="728.5" width="127.5" height="22"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O6V-kn-GoS">
-                    <rect key="frame" x="176" y="267" width="238" height="629"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="Mist" translatesAutoresizingMaskIntoConstraints="NO" id="O6V-kn-GoS">
+                    <rect key="frame" x="148" y="267" width="266" height="629"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="629" id="teo-YH-DTb"/>
                     </constraints>
@@ -104,7 +104,6 @@
                 <constraint firstItem="p2u-a8-UVx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="FhA-cl-VGo"/>
                 <constraint firstItem="8vM-4H-c1s" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="GT2-fi-ehf"/>
                 <constraint firstAttribute="bottom" secondItem="O6V-kn-GoS" secondAttribute="bottom" id="GX2-mT-QcC"/>
-                <constraint firstItem="O6V-kn-GoS" firstAttribute="leading" secondItem="Gpj-Pt-z2w" secondAttribute="trailing" constant="8" id="GoL-ne-IcL"/>
                 <constraint firstItem="sxq-lf-iL4" firstAttribute="top" secondItem="1VK-r7-cjo" secondAttribute="bottom" constant="36" id="LNg-AF-Zcy"/>
                 <constraint firstItem="O6V-kn-GoS" firstAttribute="leading" relation="lessThanOrEqual" secondItem="lVF-cK-JBz" secondAttribute="trailing" constant="49" id="MFi-e9-ern"/>
                 <constraint firstItem="1VK-r7-cjo" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="PYn-k7-DA3"/>
@@ -124,4 +123,7 @@
             <point key="canvasLocation" x="140.57971014492756" y="153.34821428571428"/>
         </view>
     </objects>
+    <resources>
+        <image name="Mist" width="240" height="550"/>
+    </resources>
 </document>
