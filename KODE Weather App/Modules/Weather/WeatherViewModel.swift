@@ -21,7 +21,7 @@ class WeatherViewModel {
     private(set) var pressure = String()
     private(set) var weatherDescription = String()
     private(set) var icon = String()
-    private(set) var id = Int()
+    private(set) var weatherState = String()
     private(set) var error = String()
     
     var onDidUpdate: (() -> Void)?
@@ -39,14 +39,14 @@ class WeatherViewModel {
         }.done { (result: WeatherForecastResponse) in
             SVProgressHUD.dismiss()
             guard let icon = result.weather.first?.icon else { return }
-            guard let id = result.weather.first?.id else { return }
             guard let description = result.weather.first?.description.capitalized else { return }
             guard let direction = self.compassDirection(for: result.wind.deg) else { return }
+            guard let weatherState = result.weather.first?.main else { return }
             let humidity = Int(result.main.humidity)
             let celsium = Int(result.main.temp - 273.15)
             self.icon = icon
-            self.id = id
             self.temperature = String(celsium)
+            self.weatherState = weatherState
             self.humidity = String(humidity) + "%"
             self.windSpeed = direction +  " " + String(result.wind.speed) + " " + "m/s"
             self.pressure = String(result.main.pressure) + " mm Hg"

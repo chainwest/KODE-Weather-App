@@ -36,14 +36,14 @@ class WeatherViewController: UIViewController {
         viewModel.onDidUpdate = { [weak self] in
             guard let self = self else { return }
             let url = URL(string: URLFactory.iconBaseURL + (self.viewModel.icon) + "@2x.png")
-            let myid = self.viewModel.id
+            let imageName = self.viewModel.weatherState
             self.cityLabel.text = self.viewModel.cityName
             self.temperatureLabel.text = self.viewModel.temperature
             self.humidityLabel.text = self.viewModel.humidity
             self.windLabel.text = self.viewModel.windSpeed
             self.pressureLabel.text = self.viewModel.pressure
             self.weatherStateLabel.text = self.viewModel.weatherDescription.description
-            self.setupWeatherConditionImage(myid)
+            self.setWeatherStateImageView(imageName)
             self.weatherStateIcon.kf.setImage(with: url)
         }
         
@@ -53,25 +53,9 @@ class WeatherViewController: UIViewController {
         }
     }
     
-    private func setupWeatherConditionImage(_ id: Int) {
-        switch id {
-        case 200...232:
-            self.weatherStateImage.image = UIImage(named: "Thunderstorm")
-        case 300...321:
-            self.weatherStateImage.image = UIImage(named: "Drizzle")
-        case 500...531:
-            self.weatherStateImage.image = UIImage(named: "Rain")
-        case 600...622:
-            self.weatherStateImage.image = UIImage(named: "Snow")
-        case 701...781:
-            self.weatherStateImage.image = UIImage(named: "Thunderstorm")
-        case 800:
-            self.weatherStateImage.image = UIImage(named: "Clear")
-        case 801...804:
-            self.weatherStateImage.image = UIImage(named: "Clouds")
-        default:
-            self.weatherStateImage.image = UIImage(named: "Clear")
-        }
+    private func setWeatherStateImageView(_ imageName: String) {
+        guard let image = UIImage(named: imageName) else { return }
+        weatherStateImage.image = image
     }
     
     private func showError(_ error: String) {
