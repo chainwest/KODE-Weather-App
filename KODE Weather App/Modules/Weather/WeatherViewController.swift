@@ -35,14 +35,16 @@ class WeatherViewController: UIViewController {
     private func bindToViewModel() {
         viewModel.onDidUpdate = { [weak self] in
             guard let self = self else { return }
-            let url = URL(string: URLFactory.iconBaseURL + (self.viewModel.icon) + "@2x.png")
-            let imageName = self.viewModel.weatherState
+            guard let url = URL(string: URLFactory.iconBaseURL +
+                            (self.viewModel.weatherState.icon ?? "01n")
+                            + "@2x.png") else { return }
+            let imageName = self.viewModel.weatherState.state ?? "Clear"
             self.cityLabel.text = self.viewModel.cityName
-            self.temperatureLabel.text = self.viewModel.temperature
-            self.humidityLabel.text = self.viewModel.humidity
-            self.windLabel.text = self.viewModel.windSpeed
-            self.pressureLabel.text = self.viewModel.pressure
-            self.weatherStateLabel.text = self.viewModel.weatherDescription.description
+            self.temperatureLabel.text = self.viewModel.weatherState.temperature
+            self.humidityLabel.text = self.viewModel.weatherState.humidity
+            self.windLabel.text = self.viewModel.weatherState.windSpeed
+            self.pressureLabel.text = self.viewModel.weatherState.pressure
+            self.weatherStateLabel.text = self.viewModel.weatherState.state
             self.setWeatherStateImageView(imageName)
             self.weatherStateIcon.kf.setImage(with: url)
         }
