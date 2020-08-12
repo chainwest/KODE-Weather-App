@@ -31,7 +31,7 @@ class WeatherCoordinator: Coordinator {
 }
 
 extension WeatherCoordinator: WeatherViewModelDelegate {
-    func weatherViewModelDidFinish() {
+    func weatherViewModelDidFinish(_ viewModel: WeatherViewModel) {
         finish()
     }
 }

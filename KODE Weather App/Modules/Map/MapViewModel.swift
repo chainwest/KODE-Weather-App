@@ -17,7 +17,7 @@ class MapViewModel {
     var selectedCity: String?
     private(set) var selectedCoordinates: CLLocationCoordinate2D?
     private(set) var selectedCoordinatesString: String?
-    private(set) var error = String()
+    private(set) var error = ""
     
     var onDidUpdate: (() -> Void)?
     var onDidError: (() -> Void)?

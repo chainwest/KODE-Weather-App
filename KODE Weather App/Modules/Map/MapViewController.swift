@@ -9,6 +9,7 @@ import SVProgressHUD
 class MapViewController: UIViewController {
     private let viewModel: MapViewModel
     private let cardView: CardView
+    private var keyboardIsOpened = false
     
     @IBOutlet private weak var mapView: MKMapView!
     
@@ -24,6 +25,7 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNotificationCenter()
         bindToViewModel()
         setupMap(location: Constants.startCoordinates)
         setupSearchBar(self)
@@ -45,13 +47,26 @@ class MapViewController: UIViewController {
             self.viewModel.updateCoordinate(selectedCoordinates)
             guard let cityCoordinatesString = self.viewModel.selectedCoordinatesString else { return }
             self.cardView.setCityAndCoordinates(cityName, cityCoordinatesString)
-            self.showCard()
+            if self.keyboardIsOpened {
+                self.showCardOnCenterOfScreen()
+            } else {
+                self.showCard()
+            }
         }
         
         viewModel.onDidError = { [weak self] in
             guard let error = self?.viewModel.error else { return }
             self?.showError(error)
         }
+    }
+    
+    private func setupNotificationCenter() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
     }
     
     private func setupSearchBar(_ viewController: UIViewController) {
@@ -101,7 +116,7 @@ class MapViewController: UIViewController {
     
     private func showCard() {
         UIView.animate(withDuration: 0.2) {
-            self.cardView.snp.updateConstraints { make in
+            self.cardView.snp.remakeConstraints { make in
                 make.left.equalTo(self.mapView).offset(20)
                 make.right.equalTo(self.mapView).offset(-20)
                 make.bottom.equalTo(self.mapView).offset(-20)
@@ -113,10 +128,22 @@ class MapViewController: UIViewController {
 
     private func closeCard() {
         UIView.animate(withDuration: 0.2) {
-            self.cardView.snp.updateConstraints { make in
+            self.cardView.snp.remakeConstraints { make in
                 make.left.equalTo(self.mapView).offset(20)
                 make.right.equalTo(self.mapView).offset(-20)
                 make.bottom.equalTo(self.mapView).offset(200)
+                make.height.equalTo(200)
+            }
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    private func showCardOnCenterOfScreen() {
+        UIView.animate(withDuration: 0.2) {
+            self.cardView.snp.remakeConstraints { make in
+                make.left.equalTo(self.mapView).offset(20)
+                make.right.equalTo(self.mapView).offset(-20)
+                make.center.equalTo(self.mapView.center)
                 make.height.equalTo(200)
             }
             self.view.layoutIfNeeded()
@@ -157,5 +184,17 @@ extension MapViewController: CardViewModelDelegate {
     func cardViewModelDidTapShowWeather(_ viewModel: CardViewModel) {
         guard let city = self.viewModel.selectedCity else { return }
         self.viewModel.delegate?.mapViewModel(self.viewModel, didRequestShowWeatherFor: city)
+    }
+}
+
+extension MapViewController {
+    @objc func keyboardWillShow(notification: NSNotification) {
+        keyboardIsOpened = true
+        showCardOnCenterOfScreen()
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        keyboardIsOpened = false
+        showCard()
     }
 }

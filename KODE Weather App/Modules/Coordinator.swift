@@ -25,12 +25,10 @@ class Coordinator {
             print("Couldn't remove coordinator: \(coordinator). It's not a child coordinator.")
         }
     }
-
 }
 
 extension Coordinator: Equatable {
     static func == (lhs: Coordinator, rhs: Coordinator) -> Bool {
         return lhs === rhs
     }
-    
 }

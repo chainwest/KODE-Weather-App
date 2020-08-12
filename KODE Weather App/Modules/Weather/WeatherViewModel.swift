@@ -6,7 +6,7 @@ import Alamofire
 import SVProgressHUD
 
 protocol WeatherViewModelDelegate: class {
-    func weatherViewModelDidFinish()
+    func weatherViewModelDidFinish(_ viewModel: WeatherViewModel)
 }
 
 class WeatherViewModel {
@@ -15,14 +15,14 @@ class WeatherViewModel {
     let dependencies: Dependency
     
     let cityName: String
-    private(set) var temperature = String()
-    private(set) var humidity = String()
-    private(set) var windSpeed = String()
-    private(set) var pressure = String()
-    private(set) var weatherDescription = String()
-    private(set) var icon = String()
-    private(set) var weatherState = String()
-    private(set) var error = String()
+    private(set) var temperature = ""
+    private(set) var humidity = ""
+    private(set) var windSpeed = ""
+    private(set) var pressure = ""
+    private(set) var weatherDescription = ""
+    private(set) var icon = ""
+    private(set) var weatherState = ""
+    private(set) var error = ""
     
     var onDidUpdate: (() -> Void)?
     var onDidError: (() -> Void)?
@@ -40,8 +40,8 @@ class WeatherViewModel {
             SVProgressHUD.dismiss()
             guard let icon = result.weather.first?.icon else { return }
             guard let description = result.weather.first?.description.capitalized else { return }
-            guard let direction = self.compassDirection(for: result.wind.deg) else { return }
             guard let weatherState = result.weather.first?.main else { return }
+            let direction = self.compassDirection(for: result.wind.deg)
             let humidity = Int(result.main.humidity)
             let celsium = Int(result.main.temp - 273.15)
             self.icon = icon
@@ -58,9 +58,8 @@ class WeatherViewModel {
         }
     }
     
-    private func compassDirection(for heading: Double) -> String? {
-        if heading < 0 { return nil }
-
+    private func compassDirection(for heading: Double) -> String {
+        if heading < 0 { return "Wind direction error" }
         let directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"]
         let index = Int((heading + 22.5) / 45.0) & 7
         return directions[index]
