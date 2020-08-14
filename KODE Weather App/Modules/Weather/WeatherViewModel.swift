@@ -13,7 +13,7 @@ class WeatherViewModel {
     typealias Dependency = HasNetworkService
     weak var delegate: WeatherViewModelDelegate?
     let dependencies: Dependency
-    var weatherState: WeatherState
+    var weatherState: WeatherForecastState
     
     let cityName: String
     private(set) var error = ""
@@ -24,7 +24,7 @@ class WeatherViewModel {
     init(dependencies: Dependency, city: String) {
         self.dependencies = dependencies
         self.cityName = city
-        self.weatherState = WeatherState()
+        self.weatherState = WeatherForecastState()
     }
     
     public func getWeather() {

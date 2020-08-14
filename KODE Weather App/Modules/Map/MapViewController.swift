@@ -177,7 +177,7 @@ extension MapViewController: UISearchResultsUpdating {
 }
 
 extension MapViewController: CardViewModelDelegate {
-    func cardViewModelDidTapClose() {
+    func cardViewModelDidTapClose(_ viewModel: CardViewModel) {
         closeCard()
     }
     

@@ -3,7 +3,7 @@
 
 import Foundation
 
-struct WeatherState {
+struct WeatherForecastState {
     var temperature: String?
     var humidity: String?
     var windSpeed: String?
