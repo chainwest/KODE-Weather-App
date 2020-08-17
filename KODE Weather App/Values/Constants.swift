@@ -1,13 +1,8 @@
 //
 //  Constants.swift
-//  KODE Weather App
-//
-//  Created by Евгений Урбановский on 17.07.2020.
-//  Copyright © 2020 Evgeniy. All rights reserved.
-//
 
-import Foundation
+import MapKit
 
 enum Constants {
-    static let url = "http://api.openweathermap.org/"
+    static let startCoordinates = CLLocationCoordinate2D(latitude: 37.7749300, longitude: -122.4194200)
 }
